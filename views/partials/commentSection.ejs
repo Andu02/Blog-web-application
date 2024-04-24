@@ -1,0 +1,26 @@
+<% if (post.comments && post.comments.length > 0) { %>
+    <% post.comments.forEach(comment => { %>
+        <!-- Blog entry -->
+        <div class="w3-card-4 w3-margin w3-white">
+            <div class="w3-container">
+                <br>
+            </div>
+        
+            <div class="w3-container">
+                <b><%= comment.author %></b>
+                <br>
+                <span class="w3-opacity"><%= comment.date %> <%= comment.hour %></span>
+                <div class="post-content"">
+                    <p><%= comment.content %></p>
+                </div>
+                <div class="w3-row">
+                    <div class="w3-col m8 s12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+<% } else { %>
+    <p>No comments yet.</p>
+<% } %>
+<hr>

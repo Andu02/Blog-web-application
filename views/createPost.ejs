@@ -1,0 +1,34 @@
+<!-- createPost.ejs -->
+
+<%- include("partials/header") %>
+
+<div class="w3-col l8 s12">
+    <div class="w3-card-4 w3-margin w3-white">
+        <div class="w3-container w3-padding">
+            <h1>Create New Post</h1>
+            <form action="/create" method="post">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" class="w3-input w3-border" placeholder="Enter title" value="<%= typeof title !== 'undefined' ? title : "" %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content" class="w3-input w3-border resizable-auto" placeholder="Enter content" required><%= typeof content !== 'undefined' ? content : "" %></textarea>
+                </div>
+                <% if(locals.errors) { %> 
+                    <% errors.forEach(error => { %>
+                    <p class="error"><%= error %></p>
+                <% })} %>
+                <p><button style="font-weight: bold;"  type="submit" class="w3-button w3-padding-large w3-white w3-border">CREATE POST</button></p>
+            </form>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<!-- Scripts -->
+<script src="/scripts/textAreaResizeScript.js"></script>
+
+<%- include("partials/rightPanel") %>
+
+<%- include("partials/footer") %>

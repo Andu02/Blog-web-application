@@ -1,0 +1,110 @@
+body,h1,h2,h3,h4,h5 {
+    font-family: "Raleway", sans-serif
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+form {
+    margin-right: 4px; /* TEMPORARY */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.post-content p {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+.align-pb-15 {
+    display: flex; 
+    align-items: center; 
+    padding-bottom: 15px; 
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+.margin-top-60 {
+    margin-top: 60px;
+}
+
+.header {
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    left: 0; 
+    z-index: 1000; 
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    background-color: #f4f4f4;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+}
+
+a {
+    color: black;
+}
+
+.border-bottom {
+    border-bottom: 1px, solid, black;
+}
+
+.resizable-auto {
+    resize: none; /* Disable manual resizing */
+    min-height: 100px; /* Set minimum height to ensure it's initially visible */
+    overflow-y: hidden; /* Hide vertical scrollbar initially */
+}
+
+.error {
+    color: red;
+}
+
+.icon {
+    height: 30px;
+    width: 30px;
+}
+
+#title {
+    width: 100%; 
+  }
+
+.no-overflow {
+    overflow-wrap: break-word; 
+    max-width: 100%; 
+}
