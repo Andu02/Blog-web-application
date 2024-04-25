@@ -14,9 +14,10 @@
     <br>
   </div>
 
-    <% posts.forEach(post => { %>
+  <% posts.forEach(post => { %>
     <!-- Blog entry -->
-    <div class="w3-card-4 w3-margin w3-white">
+    <a href="/post/<%= post.id %>">
+    <div class="w3-card-4 w3-margin w3-white w3-hoverable hoverable">
       <div class="w3-container">
         <br>
         <b><%= post.author %></b>
@@ -24,16 +25,18 @@
         <span class="w3-opacity"><%= post.date %> <%= post.hour %> <%= post.isEdited %> </span>
         <br>
         <br>
-        <h3 class="no-overflow"><a href="/post/<%= post.id %>"><b><%= post.title %></b></a></h3>
+        <h3 class="no-overflow"><b><%= post.title %></b></h3>
       </div>
   
-      <div class="w3-container">
+        <div class="w3-container"">
           <div class="post-content">
-            <p><%= post.content %></p>
+            <p ><%= post.content %></p>
           </div>
-        <div class="w3-row">
-          <div class="w3-col m8 s12">
-            <p>
+        </div>
+
+        <div class="w3-container" style="padding-bottom: 16px;">
+          <div class="w3-row">
+            <div class="w3-col m1 s1">
               <button onclick="likePost('<%= post.id %>')" class="w3-button">
                 <b>
                   <% if(post.isLiked) { %>
@@ -43,14 +46,14 @@
                   <% } %>
                 </b>
               </button>
-            </p>
-          </div>
-          <div class="w3-col m4 w3-hide-small">
-            <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-tag"><%= post.numberComments %></span></span></p>
-          </div>
+            </div>
+              <div class="w3-col m11 s11">
+                <p><span class="w3-padding-large w3-right comments-section"><b>Comments  </b> <span class="w3-tag"><%= post.numberComments %></span></span></p>
+              </div>
+            </div>
         </div>
-      </div>
     </div>
+    </a>
     <% }); %>
     <hr>
   <!-- END BLOG ENTRIES -->

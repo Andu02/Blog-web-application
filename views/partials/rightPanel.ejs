@@ -6,7 +6,9 @@
     <div class="w3-card w3-margin w3-margin-top">
       <div class="w3-container w3-padding w3-white">
         <h4><b>Scoicaru Andrei Alexandru</b></h4>
-        <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+        <p>Hi, I'm Andrei Alexandru Scoicaru, currently pursuing a Bachelor's degree in Mathematics and Computer Science Applied in Engineering at Politehnica University of Bucharest. I have a deep interest in exploring the intersections of mathematics and computer science to tackle real-world engineering challenges.</p>
+        <p>I've undertaken various programming projects to deepen my understanding and sharpen my skills. From crafting a 2D Role-Playing Game and a TicTacToe game in Java to creating dynamic lists in C++ and developing web projects using HTML, CSS, Bootstrap, Javascript, Node.js, Express.js (one of them being this web app), I've embraced diverse challenges in the realm of software development.</p>
+        <p>As I continue my academic journey and professional growth, I'm excited about the opportunities to contribute to cutting-edge projects and make meaningful impacts in the world of computer science and engineering.</p>
       </div>
     </div><hr>
     
@@ -16,12 +18,12 @@
         <h4>Popular Posts</h4>
       </div>
       
-      <ul class="w3-ul w3-hoverable w3-white">
+      <ul class="w3-ul w3-hoverable w3-white border-bottom">
       <% if (locals.posts && locals.posts.length > 0) { %>
         <% let i = 0; while (i < 4 && i < locals.posts.length) { %>
         <% if(locals.posts[i].isLiked) { %>
           <a href="/post/<%= posts[i].id %>">
-            <li class="w3-padding-16 border-bottom">
+            <li class="w3-padding-16">
               <span class="w3-large no-overflow"><b><%= locals.posts[i].title.substring(0, 40) + "..." %></b></span><br>
               <span class="no-overflow"><%= locals.posts[i].content.substring(0, 120) + "..." %></span>
             </li>

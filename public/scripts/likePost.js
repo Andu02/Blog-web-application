@@ -20,3 +20,13 @@ function likePost(postId) {
 });
 }
 
+var myButtons = document.querySelectorAll('.w3-button');
+
+myButtons.forEach(function(button) {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        console.log('Button clicked:', button.textContent);
+    });
+});
+
