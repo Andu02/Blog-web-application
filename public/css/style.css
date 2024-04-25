@@ -85,6 +85,10 @@ a {
     border-bottom: 1px, solid, black;
 }
 
+.no-border-bottom {
+    border-bottom: 0px !important;
+}
+
 .resizable-auto {
     resize: none; /* Disable manual resizing */
     min-height: 100px; /* Set minimum height to ensure it's initially visible */
