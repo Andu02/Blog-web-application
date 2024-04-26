@@ -15,14 +15,14 @@ This project is a simple blog application built using Node.js and Express.js. It
 # Technologies Used:
 - Node.js
 - Express.js
-- EJS (Embedded JavaScript) templates
+- EJS templates
 - HTML
 - CSS
 
 # Usage:
 - Clone the repository.
 - Install dependencies using npm install.
-- Start the server using npm start.
+- Start the server using node index.js.
 - Access the application in your web browser at http://localhost:3000.
 
 # Preview
