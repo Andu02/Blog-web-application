@@ -1,60 +1,74 @@
-<!-- rightPanel.ejs -->
-
 <!-- Introduction menu -->
 <div class="w3-col l4">
-    <!-- About Card -->
-    <div class="w3-card w3-margin">
-      <div class="w3-container w3-padding">
-          <h4>About me</h4>
-      </div>
-      <ul class="w3-ul w3-white">
-        <li class="no-border-bottom">I'm <b>Andrei Alexandru Scoicaru</b>, currently pursuing a Bachelor's degree in Mathematics and Computer Science Applied in Engineering at Politehnica University of Bucharest. I have a deep interest in exploring the intersections of mathematics and computer science to tackle real-world engineering challenges.</li>
-        <li class="no-border-bottom">I've undertaken various programming projects to deepen my understanding and sharpen my skills. From crafting a 2D Role-Playing Game and a TicTacToe game in Java to creating dynamic lists in C++ and developing web projects using HTML, CSS, Bootstrap, Javascript, Node.js, Express.js (one of them being this web app), I've embraced diverse challenges in the realm of software development.</li>
-        <li class="no-border-bottom">As I continue my academic journey and professional growth, I'm excited about the opportunities to contribute to cutting-edge projects and make meaningful impacts in the world of computer science and engineering.</li>
-      </ul>
+  <!-- About Card -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>About me</h4>
     </div>
-    <hr>
-    
-    <!-- Posts -->
-    <div class="w3-card w3-margin">
-      <div class="w3-container w3-padding">
-        <h4>Popular Posts</h4>
-      </div>
-      
-      <ul class="w3-ul w3-hoverable w3-white">
-      <% if (locals.posts && locals.posts.length > 0) { %>
-        <% let i = 0; while (i < 4 && i < locals.posts.length) { %>
-        <% if(locals.posts[i].isLiked) { %>
-          <a href="/post/<%= posts[i].id %>">
-            <li class="w3-padding-16 border-bottom">
-              <span class="w3-large no-overflow"><b><%= locals.posts[i].title.substring(0, 40) + "..." %></b></span><br>
-              <span class="no-overflow"><%= locals.posts[i].content.substring(0, 120) + "..." %></span>
-            </li>
-          </a>
-        <% } i++; } %>
+    <ul class="w3-ul w3-white">
+      <li class="no-border-bottom">I'm <b>Andrei Alexandru Scoicaru</b>, currently pursuing a Bachelor's degree in Mathematics and Computer Science Applied in Engineering at Politehnica University of Bucharest. I have a deep interest in exploring the intersections of mathematics and computer science to tackle real-world engineering challenges.</li>
+      <li class="no-border-bottom">I've undertaken various programming projects to deepen my understanding and sharpen my skills. From crafting a 2D Role-Playing Game and a TicTacToe game in Java to creating dynamic lists in C++ and developing web projects using HTML, CSS, Bootstrap, Javascript, Node.js, Express.js (one of them being this web app), I've embraced diverse challenges in the realm of software development.</li>
+      <li class="no-border-bottom"> As I continue my academic journey and professional growth, I'm excited about the opportunities to contribute to cutting-edge projects and make meaningful impacts in the world of computer science and engineering.</li>
+    </ul>
+  </div>
+  <hr/>
+
+  <!-- Posts -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Popular Posts</h4>
+    </div>
+
+    <ul class="w3-ul w3-hoverable w3-white">
+      <% if (locals.posts && locals.posts.length > 0) { %> 
+        <% let i = 0; while(i < 4 && i < locals.posts.length) { %> 
+          <% if(locals.posts[i].isLiked) { %>
+            <a href="/post/<%= posts[i].id %>">
+              <li class="w3-padding-16 border-bottom">
+                <% if(locals.posts[i].title.length < 40) { %>
+                  <span class="w3-large no-overflow"><b><%= locals.posts[i].title %></b></span>
+                <% } else { %>
+                  <span class="w3-large no-overflow"><b><%= locals.posts[i].title.substring(0, 40) + "..." %></b></span>    
+                <% } %> 
+                <br/>
+                <% if(locals.posts[i].content.length < 120) { %>
+                  <span class="w3-large no-overflow"><b><%= locals.posts[i].content%></b></span>
+                <% } else { %>
+                  <span class="no-overflow"><%= locals.posts[i].content.substring(0, 120) + "..." %></span>
+                <% } %>
+              </li>
+            </a>
+            <% } i++; } %> 
       <% } else { %>
         <li>No posts found.</li>
       <% } %>
-      </ul>
-      
-    </div>
-    <hr> 
-   
-    <!-- Labels / tags -->
-    <div class="w3-card w3-margin">
-      <div class="w3-container w3-padding">
-        <h4>Tags</h4>
-      </div>
-      <div class="w3-container w3-white">
-      <p><span class="w3-tag w3-black w3-margin-bottom">Programming</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Express.js</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Node.js</span>
-        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Javascript</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Politehnica</span><span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
-        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Romanian</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Bucharest</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Student</span>
-        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Random</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Genius</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Lifestyle</span>
-        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Mewing</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"></span>
-      </p>
-      </div>
-    </div>
-    
-  <!-- END Introduction Menu -->
+    </ul>
   </div>
-  
+  <hr/>
+
+  <!-- Labels / tags -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Tags</h4>
+    </div>
+    <div class="w3-container w3-white">
+      <p>
+        <span class="w3-tag w3-black w3-margin-bottom">Programming</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Express.js</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Node.js</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Javascript</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Politehnica</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Romanian</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Bucharest</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Student</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Random</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Genius</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Lifestyle</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Mewing</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- END Introduction Menu -->
+</div>

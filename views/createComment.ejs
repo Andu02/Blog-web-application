@@ -1,63 +1,79 @@
-<!-- createComment.ejs -->
-
 <%- include ("partials/header") %>
 
 <div class="w3-col l8 s12">
-    <!-- Blog entry -->
-    <div class="w3-card-4 w3-margin w3-white">
-        <div class="w3-container">
-            <br>
-            <h3><%= post.title %></h3>
-            <span class="w3-opacity"><%= post.date %> <%= post.hour %> <%= post.isEdited %> </span>
-        </div>
-
-        <div class="w3-container">
-            <div class="post-content">
-                <p><%= post.content %></p>
-            </div>
-            <div class="w3-row">
-                <div class="w3-col m8 s12">
-                  <div class="w3-col m8 s12 align-pb-15">
-                    <form action="/redirect" method="POST" style="margin-right: 4px;">
-                        <button class="w3-button w3-padding-large w3-white w3-border"><b>BACK</b></button>
-                    </form>
-                </div>
-                </div>
-                <div class="w3-col m4">
-                    <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-tag"><%= post.numberComments %></span></span></p>
-                </div>
-            </div>
-        </div>
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+      <br/>
+      <b><%= post.author %></b>
+      <div class="w3-right">
+        <button onclick="likePost('<%= post.id %>')" class="w3-button">
+          <b>
+            <% if(post.isLiked) { %>
+            <img id="likeImage_<%= post.id %>" class="icon" src="/icons/like-pressed.png" />
+            <% } else { %>
+            <img id="likeImage_<%= post.id %>" class="icon" src="/icons/like-unpressed.png"/>
+            <% } %>
+          </b>
+        </button>
+      </div>
+      <br/>
+      <span class="w3-opacity"><%= post.date %> <%= post.hour %> <%= post.isEdited %></span>
+      <br/>
+      <br/>
+      <h3 class="no-overflow">
+        <a href="/post/<%= post.id %>"><b><%= post.title %></b></a>
+      </h3>
     </div>
-    <hr>
-    <!-- END BLOG ENTRY -->
 
-    <!-- Comments section -->
-    <div class="w3-card-4 w3-margin w3-white">
-        <div class="w3-container w3-padding">
-            <h1>Create New Comment</h1>
-            <form action="/create-comment/<%= post.id %>" method="POST">
-                <div class="form-group">
-                    <label for="content">Content:</label>
-                        <textarea id="content" name="content" class="w3-input w3-border resizable-auto" placeholder="Enter content" required></textarea>
-                </div>
-                <% if(locals.errors) { %> 
-                    <% errors.forEach(error => { %>
-                    <p class="error"><%= error %></p>
-                <% })} %>
-                <p><button style="font-weight: bold;" type="submit" class="w3-button w3-padding-large w3-white w3-border">CREATE COMMENT</button></p>
+    <div class="w3-container">
+      <div class="post-content">
+        <p><%= post.content %></p>
+      </div>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+          <div class="w3-col m8 s12 align-pb-15">
+            <form action="/redirect" method="GET" style="margin-right: 4px">
+              <button class="w3-button w3-padding-large w3-white w3-border">
+                <b>BACK</b>
+              </button>
             </form>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- COMMENTS SECTION END -->
+  </div>
+  <hr/>
+  <!-- END BLOG ENTRY -->
 
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container w3-padding">
+      <h1>Create New Comment</h1>
+      <form action="/create-comment/<%= post.id %>" method="POST">
+        <div class="form-group">
+          <label for="content">Content:</label>
+          <textarea id="content" name="content" class="w3-input w3-border resizable-auto" placeholder="Enter content" required></textarea>
+        </div>
+        <% if(locals.errors) { %> <% errors.forEach(error => { %>
+        <p class="error"><%= error %></p>
+        <% })} %>
+        <p>
+          <button style="font-weight: bold" type="submit" class="w3-button w3-padding-large w3-white w3-border">CREATE COMMENT</button>
+        </p>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="w3-container">
+    <hr>
     <%- include ("partials/commentSection") %>
+  </div>
 
 </div>
 
 <!-- Scripts -->
+<script src="/scripts/likePost.js"></script>
 <script src="/scripts/textAreaResizeScript.js"></script>
 
-<%- include ("partials/rightPanel") %>
-
-<%- include ("partials/footer") %>
+<%- include ("partials/rightPanel") %> <%- include ("partials/footer") %>

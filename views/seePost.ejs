@@ -1,53 +1,72 @@
-<!-- seePost.ejs -->
 <%- include ("partials/header") %>
 
 <div class="w3-col l8 s12">
-    <!-- Blog entry -->
-    <div class="w3-card-4 w3-margin w3-white">
-        <div class="w3-container">
-            <br>
-            <b><%= post.author %></b>
-            <br>
-            <span class="w3-opacity"><%= post.date %> <%= post.hour %> <%= post.isEdited %> </span>
-            <br>
-            <br>
-            <h3 class="no-overflow"><a href="/post/<%= post.id %>"><b><%= post.title %></b></a></h3>
-        </div>
-
-        <div class="w3-container">
-            <div class="post-content">
-                <p><%= post.content %></p>
-            </div>
-            <div class="w3-row">
-                <div class="w3-col m8 s12">
-                  <div class="w3-col m8 s12 align-pb-15">
-                    <form action="edit/<%= post.id %>/" method="GET" style="margin-right: 4px;">
-                        <button class="w3-button w3-padding-large w3-yellow w3-border"><b>EDIT</b></button>
-                    </form>
-                    <form action="delete/<%= post.id %>/" method="POST" style="margin-right: 4px;">
-                        <button class="w3-button w3-padding-large w3-red w3-border"><b>DELETE</b></button>
-                    </form>
-                    <form action="comment/<%= post.id %>/" method="GET">
-                        <button class="w3-button w3-padding-large w3-blue w3-border"><b>COMMENT</b></button>
-                    </form>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
-            <h3 class="w3-margin-top"><b>Comments  </b><span class="w3-tag"><%= post.numberComments %></span></h3>
-        <hr>
-        <!-- END BLOG ENTRY -->
-
-        <!-- Comment section -->
-        <%- include ("partials/commentSection") %>
-        <!-- COMMENT SECTION END -->
+      <br/>
+      <b><%= post.author %></b>
+      <div class="w3-right">
+        <button onclick="likePost('<%= post.id %>')" class="w3-button">
+          <b>
+            <% if(post.isLiked) { %>
+            <img id="likeImage_<%= post.id %>" class="icon" src="/icons/like-pressed.png" />
+            <% } else { %>
+            <img id="likeImage_<%= post.id %>" class="icon" src="/icons/like-unpressed.png"/>
+            <% } %>
+          </b>
+        </button>
+      </div>
+      <br/>
+      <span class="w3-opacity"><%= post.date %> <%= post.hour %> <%= post.isEdited %></span>
+      <br/>
+      <br/>
+      <h3 class="no-overflow">
+        <a href="/post/<%= post.id %>"><b><%= post.title %></b></a>
+      </h3>
     </div>
 
+    <div class="w3-container">
+      <div class="post-content">
+        <p><%= post.content %></p>
+      </div>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+          <div class="w3-col m8 s12 align-pb-15">
+            <form action="edit/<%= post.id %>/" method="GET" style="margin-right: 4px">
+              <button class="w3-button w3-padding-large w3-white w3-border">
+                <b>EDIT</b>
+              </button>
+            </form>
+            <form action="delete/<%= post.id %>/" method="POST" style="margin-right: 4px"> 
+              <button class="w3-button w3-padding-large w3-white w3-border">
+                <b>DELETE</b>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <form action="comment/<%= post.id %>/" method="GET">
+      <button class="w3-button w3-white w3-border w3-right" style="margin-top: 11.5px;">
+        <b>ADD COMMENT</b>
+      </button>
+    </form>
+    <h3 class="w3-margin-top">
+      <b>Comments  </b><span class="w3-tag"><%= post.numberComments %></span>
+    </h3>
+    <hr/>
+    <!-- END BLOG ENTRY -->
+
+    <!-- Comment section -->
+    <%- include ("partials/commentSection") %>
+    <!-- COMMENT SECTION END -->
+  </div>
 </div>
 
-<%- include ("partials/rightPanel") %>
+<script src="/scripts/likePost.js"></script>
 
-<%- include ("partials/footer") %>
+<%- include ("partials/rightPanel") %> <%- include ("partials/footer") %>
