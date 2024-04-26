@@ -13,6 +13,10 @@ const maxTitleLength = 50;
 const minContentLength = 5;
 const maxContentLength = 500;
 
+// in 15 minutes
+const commentRateLimit = 50;
+const postRateLimit = 50;
+
 // Set up middleware to parse request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -36,7 +40,7 @@ app.get("/create", (req, res) => {
 });
 
 // Post new post
-app.post("/create", validatePost(true, false, "createPost"), (req, res) => {
+app.post("/create", checkPostRateLimit, validatePost(true, false, "createPost"), (req, res) => {
   let { title, content } = req.body;
 
   const newPost = {
@@ -84,10 +88,7 @@ app.get("/post/comment/:id", (req, res) => {
 });
 
 // Post new comment
-app.post(
-  "/create-comment/:id",
-  validatePost(false, true, "createComment"),
-  (req, res) => {
+app.post("/create-comment/:id", checkCommentRateLimit, validatePost(false, true, "createComment"),(req, res) => {
     const postId = req.params.id;
     const post = postsArray.find((post) => post.id === postId);
     const { content } = req.body;
@@ -214,3 +215,75 @@ function validatePost(requireTitle, requirePost, view) {
     }
   };
 }
+
+// Post timestamps for each IP address
+const ipTimestamps = {};
+
+// Define an object to store post timestamps for each IP address
+const ipPostTimestamps = {};
+
+// Middleware to check rate limit before creating a new post
+function checkPostRateLimit(req, res, next) {
+    const userIp = req.ip; // Get user's IP address
+
+    // Get current timestamp
+    const currentTime = Date.now();
+
+    // Check if the IP address has made more than 100 posts in the last 15 minutes
+    const fifteenMinutesAgo = currentTime - (15 * 60 * 1000); // 15 minutes in milliseconds
+    const recentPosts = (ipPostTimestamps[userIp] || []).filter(timestamp => timestamp >= fifteenMinutesAgo);
+
+    // If the IP address has exceeded the limit, reject the request
+    if (recentPosts.length >= postRateLimit) {
+        return res.status(429).send("Rate limit exceeded. Please try again later.");
+    }
+
+    // Store the current post timestamp
+    if (!ipPostTimestamps[userIp]) {
+        ipPostTimestamps[userIp] = [];
+    }
+    ipPostTimestamps[userIp].push(currentTime);
+
+    // Cleanup old timestamps to prevent memory leak
+    ipPostTimestamps[userIp] = ipPostTimestamps[userIp].filter(timestamp => timestamp >= fifteenMinutesAgo);
+
+    // Proceed to create the new post
+    next();
+}
+
+// Comment timestamps for each IP address
+const ipCommentTimestamps = {};
+
+// Middleware to check rate limit before creating a new comment
+function checkCommentRateLimit(req, res, next) {
+    const userIp = req.ip; // Get user's IP address
+
+    // Get current timestamp
+    const currentTime = Date.now();
+
+    // Check if the IP address has made more than 100 comments in the last 15 minutes
+    const fifteenMinutesAgo = currentTime - (15 * 60 * 1000); // 15 minutes in milliseconds
+    const recentComments = (ipCommentTimestamps[userIp] || []).filter(timestamp => timestamp >= fifteenMinutesAgo);
+
+    // If the IP address has exceeded the limit, reject the request
+    if (recentComments.length >= commentRateLimit) {
+        return res.status(429).send("Rate limit exceeded. Please try again later.");
+    }
+
+    // Store the current comment timestamp
+    if (!ipCommentTimestamps[userIp]) {
+        ipCommentTimestamps[userIp] = [];
+    }
+    ipCommentTimestamps[userIp].push(currentTime);
+
+    // Cleanup old timestamps to prevent memory leak
+    ipCommentTimestamps[userIp] = ipCommentTimestamps[userIp].filter(timestamp => timestamp >= fifteenMinutesAgo);
+
+    // Proceed to create the new comment
+    next();
+}
+
+
+
+
+
