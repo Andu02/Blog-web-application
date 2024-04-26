@@ -11,6 +11,7 @@ This project is a simple blog application built using Node.js and Express.js. It
 - Like posts
 - Validation for post creation and comment submission
 - Date and time tracking for post creation and comment submission
+- Rate Limiting Feature
 
 # Technologies Used:
 - Node.js
