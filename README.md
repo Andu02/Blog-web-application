@@ -15,12 +15,16 @@ This project is a simple blog application built using Node.js and Express.js. It
 # Technologies Used:
 - Node.js
 - Express.js
-- EJS (Embedded JavaScript) templates
+- EJS templates
 - HTML
 - CSS
 
 # Usage:
 - Clone the repository.
 - Install dependencies using npm install.
-- Start the server using npm start.
+- Start the server using node index.js.
 - Access the application in your web browser at http://localhost:3000.
+
+# Preview
+![1](https://github.com/Andu02/Blog-web-application/assets/133790348/2d560075-6183-4aab-a43b-e71aa7a3c0d4)
+![2](https://github.com/Andu02/Blog-web-application/assets/133790348/ff3ad30d-0988-4a2c-8707-bb6a73c2aad5)
