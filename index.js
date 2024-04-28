@@ -9,9 +9,9 @@ const app = express();
 const port = 3000;
 
 const minTitleLength = 5;
-const maxTitleLength = 50;
+const maxTitleLength = 100;
 const minContentLength = 5;
-const maxContentLength = 500;
+const maxContentLength = 1000;
 
 // in 15 minutes
 const commentRateLimit = 50;
