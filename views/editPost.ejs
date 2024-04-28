@@ -26,27 +26,21 @@
       </div>
     </div>
 
-    <div class="w3-container">
-      <div class="w3-row">
-        <div class="w3-col m8 s12">
-          <div class="w3-col m8 s12 align-pb-15"></div>
-        </div>
-        <div class="w3-col m4 w3-hide-small">
-          <p>
-            <span class="w3-padding-large w3-right margin-bottom-15"><b>Comments  </b><span class="w3-tag"><%= post.numberComments %></span></span>
-          </p>
-        </div>
-      </div>
-    </div>
+    
   </div>
 
   <div class="w3-container">
-    <h3 class="w3-margin-top"><b>Comments</b></h3>
-    <hr />
+    <h3 class="w3-margin-top">
+      <b>Comments  </b><span class="w3-tag"><%= post.numberComments %></span>
+    </h3>
+    <hr/>
     <!-- END BLOG ENTRY -->
 
+    <!-- Comment section -->
     <%- include ("partials/commentSection") %>
+    <!-- COMMENT SECTION END -->
   </div>
+
 </div>
 
 <!-- Scripts-->
