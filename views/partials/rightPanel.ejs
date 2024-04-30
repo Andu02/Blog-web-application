@@ -32,7 +32,7 @@
                 <% } %> 
                 <br/>
                 <% if(locals.posts[i].content.length < 120) { %>
-                  <span class="w3-large no-overflow"><b><%= locals.posts[i].content%></b></span>
+                  <span class="w3-large no-overflow"><%= locals.posts[i].content%></span>
                 <% } else { %>
                   <span class="no-overflow"><%= locals.posts[i].content.substring(0, 120) + "..." %></span>
                 <% } %>
