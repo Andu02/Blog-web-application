@@ -28,6 +28,9 @@ This project is a simple blog application built using Node.js and Express.js. It
 
 # Preview
 - Home Page
+  
 ![1](https://github.com/Andu02/Blog-web-application/assets/133790348/2d560075-6183-4aab-a43b-e71aa7a3c0d4)
+
 - Post Page
+  
 ![2](https://github.com/Andu02/Blog-web-application/assets/133790348/ff3ad30d-0988-4a2c-8707-bb6a73c2aad5)
